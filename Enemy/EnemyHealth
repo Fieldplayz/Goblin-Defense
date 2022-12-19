@@ -35,6 +35,7 @@ public class EnemyHealth : MonoBehaviour
 
     private void OnParticleCollision(GameObject other)
     {
+        //checkt door welke projectile hij geraakt is
         if(other.tag == "Ballista")
         {
             
@@ -48,6 +49,7 @@ public class EnemyHealth : MonoBehaviour
 
     private void ProcessHit(float damage)
     {
+        //doet damage aan de hand van de hoeveelheid damage die is doorgegeven
         currentHealth = currentHealth - damage;
         healthBar.UpdateHealthBar(health, currentHealth);
 
