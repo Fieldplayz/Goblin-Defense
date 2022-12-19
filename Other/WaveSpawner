@@ -38,8 +38,10 @@ public class WaveSpawner : MonoBehaviour
         currentWave = waves[currentWaveNumber];
         SpawnWave();
         GameObject[] totalEnemies = GameObject.FindGameObjectsWithTag("Enemy");
+        //checkt of er nog enemy's in game scene zitten
         if (totalEnemies.Length == 0)
         {
+            //checkt of er nog een volgende wave is
             if (currentWaveNumber + 1 != waves.Length)
             {
                 if (canAnimate)
@@ -78,6 +80,8 @@ public class WaveSpawner : MonoBehaviour
     {
         if (canSpawn && nextSpawnTime < Time.time)
         {
+            // Spawnt een enemy en dan als die gespawnt is wacht die een bepaalde tijd voordat hij opnieuw een enemy mag spawnen
+            // als de hoeveelheid enemy's behaald is dan stopt hij met enemy's spawnen
             GameObject randomEnemy = currentWave.typeEnemies[Random.Range(0, currentWave.typeEnemies.Length)];
             Transform randomPoint = spawnPoints[Random.Range(0, spawnPoints.Length)];
             Instantiate(randomEnemy, randomPoint.position, Quaternion.identity);
