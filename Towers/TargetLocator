@@ -12,11 +12,6 @@ public class TargetLocator : MonoBehaviour
     Enemy[] enemies;
     bool needRepaired;
 
-    private void Start()
-    {
-       
-    }
-
 
     // Update is called once per frame
     void Update()
@@ -37,7 +32,7 @@ public class TargetLocator : MonoBehaviour
 
     void FindClosestTarget()
     {
-        
+        Checkt welke enemy het meest dichtbij de toren is
         Transform closestTarget = null;
         float maxDistance = Mathf.Infinity;
 
@@ -57,6 +52,7 @@ public class TargetLocator : MonoBehaviour
 
     void AimWeapon()
     {
+        // roteert naar de enemie die het dichtst bij de toren is
         float targetDistance = Vector3.Distance(transform.position, target.position);
 
         weapon.LookAt(target);
@@ -74,6 +70,7 @@ public class TargetLocator : MonoBehaviour
 
     void Attack(bool isActive)
     {
+        // schiet een particle projectile naar de enemy
         var emissionModule = projectileParticles.emission;
         emissionModule.enabled = isActive;
     }
