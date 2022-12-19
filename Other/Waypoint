@@ -18,8 +18,10 @@ public class Waypoint : MonoBehaviour
 
         if (Input.GetMouseButtonDown(0) && isPlaceable)
         {
+            // checkt welke toren hij moet spawnen
             if(tower == 1)
             {
+                // plaatst de toren op de aangegeven plek
                 bool isPlaced = balista.CreateTower(balista, transform.position);
                 isPlaceable = !isPlaced;
                 PlayerPrefs.SetInt("Tower", 0);
