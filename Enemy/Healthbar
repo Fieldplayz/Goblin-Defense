@@ -16,11 +16,13 @@ public class HealthBar : MonoBehaviour
 
     public void UpdateHealthBar(float maxHealth, float currentHealth)
     {
+        // update de healtbar naar hoeveel health de enemy nog heeft
         healthbarSprite.fillAmount = currentHealth / maxHealth;
     }
 
     private void Update()
     {
+        // laat de healthbar altijd naar de camera roteren
         transform.rotation = Quaternion.LookRotation(transform.position - cam.transform.position);
     }
 }
