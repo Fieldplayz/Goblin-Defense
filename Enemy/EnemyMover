@@ -24,10 +24,12 @@ public class EnemyMover : MonoBehaviour
 
     void FindPath()
     {
+       
         path.Clear();
-
+        // zoekt de parent object waar de waypoints in staan
         GameObject parent = GameObject.FindGameObjectWithTag("Path");
 
+         // gaat elke waypoint af die in parent zit en voeg ze aan de lijst toe
         foreach(Transform child in parent.transform)
         {
             Waypoint waypoint = child.GetComponent<Waypoint>();
@@ -42,11 +44,13 @@ public class EnemyMover : MonoBehaviour
 
     void ReturnToPath()
     {
+        //zorgt dat die op het begin spawnt
         transform.position = path[0].transform.position;
     }
 
     void FinishPath()
     {
+        //als hij bij het einde van het pad is dan haalt hij goud uit de bank vandaan
         enemy.StealGold();
         gameObject.SetActive(false);
     }
@@ -55,6 +59,7 @@ public class EnemyMover : MonoBehaviour
     {
         foreach(Waypoint waypoint in path)
         {
+            //slaat de positie van de enemy en de positie van de volgende waypoint op in een vector
             Vector3 startPosition = transform.position;
             Vector3 endPosition = waypoint.transform.position;
             float travelPercent = 0f;
@@ -63,6 +68,7 @@ public class EnemyMover : MonoBehaviour
 
             while(travelPercent < 1f)
             {
+                // de enemy loopt naar de waypoint en als hij er is gaat hij naar de volgende waypoint
                 travelPercent += Time.deltaTime * speed;
                 transform.position = Vector3.Lerp(startPosition, endPosition, travelPercent);
                 yield return new WaitForEndOfFrame();
